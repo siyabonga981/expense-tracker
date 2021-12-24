@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+            <ion-icon class="white-color" name="menu"></ion-icon>
+    </button>
+    <ion-title
+      size="12"
+      class="white-color"
+      style="overflow: visible !important"
+      >Categories</ion-title
+    >
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-content padding>
+  <ion-list> -->
+    <!-- <button ion-item *ngFor="let item of categories">
+      <ion-icon [name]="item.icon" item-start></ion-icon>
+      {{item.title}}
+      <div class="item-note" item-end>
+        {{item.note}}
+      </div>
+    </button> -->
+  <!-- </ion-list>
+</ion-content> -->
+
+<ion-content class="black-background">
+  <ion-grid>
+    <div class="flex flex-col gap">
+      <div class="flex justify-between padding-left-right-10px">
+        <div class="flex flex-col">
+          <h4 class="white-color"></h4>
+        </div>
+        <div class="flex flex-col justify-center">
+          <h4 class="green-color"><ion-icon color="secondary" name="add-circle"></ion-icon> Add New</h4>
+        </div>
+      </div>
+      <div class="flex flex-col gap">
+        <ion-card [style.background]="rgb[i]" *ngFor="let item of categories; let i = index;"
+          class="border-radius-1-rem height-6-rem flex"
+        >
+          <ion-card-content
+            class="full-width flex justify-start align-items-center"
+          >
+            <div class="flex gap align-items-center">
+              <div
+                class="
+                  rectangular-section-cat
+                  flex
+                  justify-center
+                  align-items-center
+                "
+              >
+                <ion-icon class="medium-font white-color" [name]="item.icon"></ion-icon>
+              </div>
+              <div class="flex flex-col gap">
+                <h2 class="white-color bold medium-font">{{ item.name }}</h2>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>

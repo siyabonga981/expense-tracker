@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon class="white-color" name="menu"></ion-icon>
+    </button>
+    <ion-title>Expenses</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="black-background">
+  <ion-grid>
+    <div class="flex flex-col gap">
+      <div class="flex flex-col">
+        <ion-card
+          class="
+            blue-background
+            border-radius-1-rem
+            height-10-rem
+            flex
+            justify-center
+            align-items-center
+          "
+        >
+          <ion-card-content class="full-width">
+            <div class="flex flex-col justify-center align-items-center">
+              <div>
+                <h2 class="white-color bold">
+                  <h2 class="white-color bold">TOTAL EXPENSES</h2>
+                </h2>
+              </div>
+              <div>
+                <h1 class="white-color bold">R500</h1>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div class="flex justify-between padding-left-right-10px">
+          <h4 class="white-color">All Expenses</h4>
+          <div class="flex flex-col justify-center">
+            <h4 (click)="addNewExpense()" class="red-color"><ion-icon class="bold" name="add-circle"></ion-icon> Add New</h4>
+          </div>
+      </div>
+      <div class="flex">
+        <ion-card
+          class="blue-background border-radius-1-rem height-10-rem flex"
+        >
+          <ion-card-content
+            class="full-width flex justify-between align-items-center"
+          >
+            <div class="flex gap align-items-center">
+              <div
+                class="
+                  rectangular-section
+                  flex
+                  justify-center
+                  align-items-center
+                "
+              >
+                <ion-icon class="large-font" name="pizza"></ion-icon>
+              </div>
+              <div class="flex flex-col gap">
+                <h2 class="white-color bold medium-font">Shoprite</h2>
+                <h2 class="white-color bold">Food</h2>
+              </div>
+            </div>
+            <div class="flex flex-col justify-center align-items-center">
+              <h1 class="red-color bold medium-font">-R900</h1>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>

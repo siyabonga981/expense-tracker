@@ -1,14 +1,15 @@
 <ion-menu [content]="content" type="overlay">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
+  <ion-header class="blue-background">
+    <ion-toolbar  color="primary">
+      <ion-title size="12" class="white-color" style="overflow: visible !important;">Expense Tracker</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content class="black-background">
+    <img src="../assets/imgs/webgooru-logo.jpg" alt="">
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <button class="black-background white-color" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon class="white-color" style="margin-right: .7rem; width: 1.5rem;" name="{{ p.icon  }}"></ion-icon> <span  class="primary-color bold">{{p.title}}</span>
       </button>
     </ion-list>
   </ion-content>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>expense-budget-modal</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="black-background" padding>
+  <ion-grid>
+    <div class="flex flex-col gap">
+      <form class="flex flex-col gap-2-rem">
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-input type="text" placeholder="Title"></ion-input>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-input placeholder="Amount"></ion-input>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-input placeholder="Title"></ion-input>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-label><b class="primary-color">Transaction Category</b> </ion-label>
+            <ion-select [(ngModel)]="transaction.category" name="category" placeholder="Select One"  okText="Confirm" cancelText="Cancel">
+              <ion-option *ngFor="let cat of categories" [value]="cat">{{ cat.name }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-label><b class="primary-color">Transaction Type</b> </ion-label>
+            <ion-select (ionChange)="getTransactionType($event)" placeholder="Select One"  okText="Confirm" cancelText="Cancel">
+              <ion-option value="Cash">Cash</ion-option>
+              <ion-option value="Card">Card</ion-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-input placeholder="Notes"></ion-input>
+          </ion-item>
+        </div>
+      </form>
+    </div>
+  </ion-grid>
+</ion-content>

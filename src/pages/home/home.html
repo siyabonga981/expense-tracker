@@ -1,18 +1,129 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon class="white-color" name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content class="black-background">
+  <ion-grid>
+    <div class="flex flex-col gap">
+      <div class="flex flex-col">
+        <ion-card
+          class="
+            blue-background
+            border-radius-1-rem
+            height-10-rem
+            flex
+            justify-center
+            align-items-center
+          "
+        >
+          <ion-card-content class="full-width">
+            <div class="flex flex-col justify-center align-items-center">
+              <div>
+                <h2 class="white-color bold">
+                  <h2 class="white-color bold">TOTAL BALANCE</h2>
+                </h2>
+              </div>
+              <div>
+                <h1 class="white-color bold">R1000</h1>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div class="flex flex-col justify-between">
+        <div class="flex justify-between full-width">
+          <div class="flex flex-col half-card">
+            <ion-card
+              class="
+                blue-background
+                border-radius-1-rem
+                height-10-rem
+                flex
+                justify-center
+                align-items-center
+              "
+            >
+              <ion-card-content class="full-width">
+                <div class="flex flex-col justify-center align-items-center">
+                  <div class="flex justify-end full-width green-color">
+                    <h2 class="white-color bold medium-font">
+                      <ion-icon color="secondary" name="add-circle"></ion-icon>
+                    </h2>
+                  </div>
+                  <div class="flex flex-col full-width justify-start">
+                    <h3 class="white-color bold">TOTAL BUDGET</h3>
+                    <h1 class="white-color bold">+R10 000</h1>
+                  </div>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div class="flex flex-col half-card">
+            <ion-card
+              class="
+                blue-background
+                border-radius-1-rem
+                height-10-rem
+                flex
+                justify-center
+                align-items-center
+              "
+            >
+              <ion-card-content class="full-width">
+                <div class="flex flex-col justify-center align-items-center">
+                  <div class="flex justify-end full-width red-color">
+                    <h2 class="white-color bold medium-font">
+                      <ion-icon color="danger" name="remove-circle"></ion-icon>
+                    </h2>
+                  </div>
+                  <div class="flex flex-col full-width justify-start">
+                    <h3 class="white-color bold">TOTAL EXPENSE</h3>
+                    <h1 class="white-color bold">-R9000</h1>
+                  </div>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-between padding-left-right-10px">
+        <div class="flex flex-col">
+          <h4 class="white-color">Recent Transactions</h4>
+        </div>
+        <div class="flex flex-col">
+          <h4 (click)="addNewExpense()" class="green-color">View All</h4>
+        </div>
+      </div>
+      <div class="flex">
+        <ion-card
+          class="
+            blue-background
+            border-radius-1-rem
+            height-10-rem
+            flex
+          "
+        >
+          <ion-card-content class="full-width flex justify-between align-items-center">
+            <div class="flex gap align-items-center">
+              <div class="rectangular-section flex justify-center align-items-center">
+                <ion-icon class="large-font" name="pizza"></ion-icon>
+              </div>
+              <div class="flex flex-col gap">
+                <h2 class="white-color bold medium-font">Shoprite</h2>
+                <h2 class="white-color bold">Food</h2>
+              </div>
+            </div>
+            <div class="flex flex-col justify-center align-items-center">
+                  <h1 class="red-color bold medium-font">-R900</h1>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </ion-grid>
 </ion-content>

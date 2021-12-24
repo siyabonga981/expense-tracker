@@ -1,30 +1,41 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component, ViewChild } from "@angular/core";
+import { Nav, Platform } from "ionic-angular";
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { HomePage } from "../pages/home/home";
+import { BudgetPage } from "../pages/budget/budget";
+import { CategoriesPage } from "../pages/categories/categories";
+import { ExpensesPage } from "../pages/expenses/expenses";
+import { AnalyticsPage } from "../pages/analytics/analytics";
+import { ListPage } from "../pages/list/list";
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: "app.html",
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string; component: any, icon: string }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: "Home", component: HomePage, icon: "home" },
+      { title: "Budget", component: BudgetPage, icon: "card" },
+      { title: "Categories", component: CategoriesPage, icon: "document" },
+      { title: "Expenses", component: ExpensesPage, icon: "cash" },
+      { title: "Analytics", component: AnalyticsPage, icon: "analytics" },
+      { title: "Logout", component: HomePage, icon: "power" }
     ];
-
   }
 
   initializeApp() {

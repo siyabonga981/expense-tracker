@@ -16,13 +16,17 @@
     "@angular/compiler": "5.2.11",
     "@angular/compiler-cli": "5.2.11",
     "@angular/core": "5.2.11",
+    "@angular/flex-layout": "^13.0.0-beta.36",
     "@angular/forms": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
     "@ionic-native/core": "4.20.0",
     "@ionic-native/splash-screen": "4.20.0",
     "@ionic-native/status-bar": "4.20.0",
     "@ionic/storage": "2.2.0",
+    "babel-core": "^7.0.0-bridge.0",
     "ionic-angular": "3.9.9",
     "ionicons": "3.0.0",
     "rxjs": "5.5.11",
@@ -30,6 +34,7 @@
     "zone.js": "0.8.29"
   },
   "devDependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@ionic/app-scripts": "3.2.4",
     "typescript": "2.6.2"
   },
