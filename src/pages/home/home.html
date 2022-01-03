@@ -1,19 +1,41 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon class="white-color" name="menu"></ion-icon>
+      <ion-icon class="black-color" name="menu"></ion-icon>
     </button>
     <ion-title>Dashboard</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="black-background">
+<div *ngIf="showLoader" class="loader-overlay full-width absolute flex justify-center align-items-center">
+  <ion-card class="loader absolute flex justify-center align-items-center">
+    <img src="../../assets/imgs/spinner.gif" alt="">
+  </ion-card>
+</div>
   <ion-grid>
     <div class="flex flex-col gap">
       <div class="flex flex-col">
         <ion-card
           class="
             blue-background
+            border-radius-1-rem
+            flex
+            justify-center
+            align-items-center
+          "
+        >
+          <ion-card-content class="full-width">
+            <div class="flex flex-col justify-center align-items-center">
+                  <h1 class="white-color bold">{{ getCurrentMonth() }} </h1>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div class="flex flex-col">
+        <ion-card
+          class="
+            white-background
             border-radius-1-rem
             height-10-rem
             flex
@@ -24,12 +46,12 @@
           <ion-card-content class="full-width">
             <div class="flex flex-col justify-center align-items-center">
               <div>
-                <h2 class="white-color bold">
-                  <h2 class="white-color bold">TOTAL BALANCE</h2>
+                <h2 class="black-color bold">
+                  <h2 class="black-color bold">TOTAL BALANCE</h2>
                 </h2>
               </div>
               <div>
-                <h1 class="white-color bold">R1000</h1>
+                <h1 [ngClass]="totalBalance > 0 ? 'green-color' : 'red-color'" class="bold">{{ totalBalance.toString()[0] === '-' ? '-R' + totalBalance.toString().slice(1)  : totalBalance}}</h1>
               </div>
             </div>
           </ion-card-content>
@@ -38,9 +60,9 @@
       <div class="flex flex-col justify-between">
         <div class="flex justify-between full-width">
           <div class="flex flex-col half-card">
-            <ion-card
+            <ion-card (click)="redirectToPage('BudgetPage')"
               class="
-                blue-background
+                white-background
                 border-radius-1-rem
                 height-10-rem
                 flex
@@ -51,22 +73,22 @@
               <ion-card-content class="full-width">
                 <div class="flex flex-col justify-center align-items-center">
                   <div class="flex justify-end full-width green-color">
-                    <h2 class="white-color bold medium-font">
+                    <h2 class="black-color bold medium-font">
                       <ion-icon color="secondary" name="add-circle"></ion-icon>
                     </h2>
                   </div>
                   <div class="flex flex-col full-width justify-start">
-                    <h3 class="white-color bold">TOTAL BUDGET</h3>
-                    <h1 class="white-color bold">+R10 000</h1>
+                    <h3 class="black-color bold">TOTAL BUDGET</h3>
+                    <h1 class="green-color bold">+R{{ budgetArrTotal }} </h1>
                   </div>
                 </div>
               </ion-card-content>
             </ion-card>
           </div>
           <div class="flex flex-col half-card">
-            <ion-card
+            <ion-card (click)="redirectToPage('ExpensesPage')"
               class="
-                blue-background
+                white-background
                 border-radius-1-rem
                 height-10-rem
                 flex
@@ -77,13 +99,13 @@
               <ion-card-content class="full-width">
                 <div class="flex flex-col justify-center align-items-center">
                   <div class="flex justify-end full-width red-color">
-                    <h2 class="white-color bold medium-font">
+                    <h2 class="black-color bold medium-font">
                       <ion-icon color="danger" name="remove-circle"></ion-icon>
                     </h2>
                   </div>
                   <div class="flex flex-col full-width justify-start">
-                    <h3 class="white-color bold">TOTAL EXPENSE</h3>
-                    <h1 class="white-color bold">-R9000</h1>
+                    <h3 class="black-color bold">TOTAL EXPENSE</h3>
+                    <h1 class="red-color bold">-R{{ expensesTotal }}</h1>
                   </div>
                 </div>
               </ion-card-content>
@@ -93,36 +115,40 @@
       </div>
       <div class="flex justify-between padding-left-right-10px">
         <div class="flex flex-col">
-          <h4 class="white-color">Recent Transactions</h4>
+          <h4 class="white-color">Recent Expenses</h4>
         </div>
         <div class="flex flex-col">
-          <h4 (click)="addNewExpense()" class="green-color">View All</h4>
+          <h4 (click)="viewAllExpenses()" class="green-color">View All</h4>
         </div>
       </div>
-      <div class="flex">
-        <ion-card
-          class="
-            blue-background
-            border-radius-1-rem
-            height-10-rem
-            flex
-          "
+      <div class="flex flex-col">
+        <ion-card *ngFor="let item of recentFiveExpenses"
+        class="white-background border-radius-1-rem height-7-rem flex"
+      >
+        <ion-card-content
+          class="full-width flex justify-between align-items-center"
         >
-          <ion-card-content class="full-width flex justify-between align-items-center">
-            <div class="flex gap align-items-center">
-              <div class="rectangular-section flex justify-center align-items-center">
-                <ion-icon class="large-font" name="pizza"></ion-icon>
-              </div>
-              <div class="flex flex-col gap">
-                <h2 class="white-color bold medium-font">Shoprite</h2>
-                <h2 class="white-color bold">Food</h2>
-              </div>
+          <div class="flex gap align-items-center">
+            <div
+              class="
+                rectangular-section
+                flex
+                justify-center
+                align-items-center
+              "
+            >
+              <ion-icon class="large-font-2-5-rem" [name]="item.category.icon"></ion-icon>
             </div>
-            <div class="flex flex-col justify-center align-items-center">
-                  <h1 class="red-color bold medium-font">-R900</h1>
+            <div class="flex flex-col gap">
+              <h2 class="black-color bold medium-font">{{ item.title }}</h2>
+              <h2 class="black-color bold">{{ item.category.name }}</h2>
             </div>
-          </ion-card-content>
-        </ion-card>
+          </div>
+          <div class="flex flex-col justify-center align-items-center">
+            <h1 class="red-color bold medium-font">-R{{ item.amount }}</h1>
+          </div>
+        </ion-card-content>
+      </ion-card>
       </div>
     </div>
   </ion-grid>

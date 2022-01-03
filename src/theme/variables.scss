@@ -105,6 +105,16 @@ ion-navbar ion-icon,
   background: $black-color !important;
 }
 
+.green-background,
+.success {
+  --background: $green-color !important;
+}
+
+.red-background,
+.failed {
+  --background: $red-color !important;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -131,6 +141,10 @@ ion-navbar ion-icon,
 
 .height-10-rem {
   height: 10rem !important;
+}
+
+.height-7-rem {
+  height: 7rem !important;
 }
 
 .height-6-rem {
@@ -163,7 +177,9 @@ ion-navbar ion-icon,
 .medium-font {
   font-size: 1.6em !important;
 }
-
+.large-font-2-5-rem{
+  font-size: 2.5rem;
+}
 .large-font {
   font-size: 3em !important;
 }
@@ -181,16 +197,36 @@ ion-navbar ion-icon,
   padding-right: 10px;
 }
 
+// .rectangular-section {
+//   width: 9rem;
+//   height: 7.5rem;
+//   background: $black-color;
+//   margin-right: 1.5rem;
+// }
+
 .rectangular-section {
-  width: 9rem;
-  height: 7.5rem;
+  width: 5rem !important;
+  height: 5rem !important;
   background: $black-color;
   margin-right: 1.5rem;
 }
 
-.rectangular-section-cat {
-  width: 5rem !important;
-  height: 4.5rem !important;
-  background: $black-color;
-  margin-right: 1.5rem;
+.loader-overlay {
+  background: rgba(0, 0, 0, 0.5) !important;
+  height: calc(100% - 56px);
+  z-index: 999999998;
+  .loader {
+    z-index: 999999999;
+    img {
+      width: 120px;
+      height: 120px;
+    }
+    background-color: rgba(0, 0, 0, 0);
+    transform: translateZ(0);
+    box-shadow: none !important;
+  }
+}
+
+.absolute {
+  position: absolute !important;
 }

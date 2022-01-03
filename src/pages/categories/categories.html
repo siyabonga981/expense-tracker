@@ -24,17 +24,21 @@
   <!-- </ion-list>
 </ion-content> -->
 
-<ion-content class="black-background">
+<ion-content class="black-background"><div *ngIf="showLoader" class="loader-overlay full-width absolute flex justify-center align-items-center">
+  <ion-card class="loader absolute flex justify-center align-items-center">
+    <img src="../../assets/imgs/spinner.gif" alt="">
+  </ion-card>
+</div>
   <ion-grid>
     <div class="flex flex-col gap">
-      <div class="flex justify-between padding-left-right-10px">
+      <!-- <div class="flex justify-between padding-left-right-10px">
         <div class="flex flex-col">
           <h4 class="white-color"></h4>
         </div>
         <div class="flex flex-col justify-center">
           <h4 class="green-color"><ion-icon color="secondary" name="add-circle"></ion-icon> Add New</h4>
         </div>
-      </div>
+      </div> -->
       <div class="flex flex-col gap">
         <ion-card [style.background]="rgb[i]" *ngFor="let item of categories; let i = index;"
           class="border-radius-1-rem height-6-rem flex"
@@ -45,13 +49,12 @@
             <div class="flex gap align-items-center">
               <div
                 class="
-                  rectangular-section-cat
                   flex
                   justify-center
                   align-items-center
                 "
               >
-                <ion-icon class="medium-font white-color" [name]="item.icon"></ion-icon>
+                <ion-icon style="margin-right: 1rem;" class="medium-font white-color" [name]="item.icon"></ion-icon>
               </div>
               <div class="flex flex-col gap">
                 <h2 class="white-color bold medium-font">{{ item.name }}</h2>

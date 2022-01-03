@@ -8,7 +8,6 @@ import { BudgetPage } from "../pages/budget/budget";
 import { CategoriesPage } from "../pages/categories/categories";
 import { ExpensesPage } from "../pages/expenses/expenses";
 import { AnalyticsPage } from "../pages/analytics/analytics";
-import { ListPage } from "../pages/list/list";
 
 @Component({
   templateUrl: "app.html",

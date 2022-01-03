@@ -7,15 +7,19 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="black-background">
+<ion-content class="black-background"><div *ngIf="showLoader" class="loader-overlay full-width absolute flex justify-center align-items-center">
+  <ion-card class="loader absolute flex justify-center align-items-center">
+    <img src="../../assets/imgs/spinner.gif" alt="">
+  </ion-card>
+</div>
   <ion-grid>
     <div class="flex flex-col gap">
       <div class="flex flex-col">
         <ion-card
           class="
-            blue-background
+            white-background
             border-radius-1-rem
-            height-10-rem
+            height-7-rem
             flex
             justify-center
             align-items-center
@@ -25,25 +29,36 @@
             <div class="flex flex-col justify-center align-items-center">
               <div>
                 <h2 class="white-color bold">
-                  <h2 class="white-color bold">TOTAL BUDGET</h2>
+                  <h2 class="black-color bold">TOTAL BUDGET</h2>
                 </h2>
               </div>
               <div>
-                <h1 class="white-color bold">R500</h1>
+                <h1 class="green-color bold">R{{ budgetArrTotal }}</h1>
               </div>
             </div>
           </ion-card-content>
         </ion-card>
       </div>
       <div class="flex justify-between padding-left-right-10px">
-          <h4 class="white-color">All Income</h4>
+          <h4 class="white-color">All Budget Items</h4>
           <div class="flex flex-col justify-center">
-            <h4 class="green-color"><ion-icon  class="bold" color="secondary" name="add-circle"></ion-icon> Add New</h4>
+            <h4 (click)="openBudgetDialog()" class="green-color"><ion-icon class="bold" name="add-circle"></ion-icon> Add To Budget</h4>
           </div>
       </div>
-      <div class="flex">
-        <ion-card
-          class="blue-background border-radius-1-rem height-10-rem flex"
+      <div class="flex flex-col gap">
+        <ion-card *ngIf="!budgetArr?.length"
+          class="white-background border-radius-1-rem height-10-rem flex"
+        >
+          <ion-card-content
+            class="full-width flex justify-center align-items-center"
+          >
+            <div class="flex flex-col justify-center align-items-center">
+              <h1 class="green-color bold medium-font">No Budget Captured Yet!</h1>
+            </div>
+          </ion-card-content>
+        </ion-card>
+        <ion-card (click)="openUpdateBudgetDialog(budget)" *ngFor="let budget of budgetArr"
+          class="white-background border-radius-1-rem height-7-rem flex"
         >
           <ion-card-content
             class="full-width flex justify-between align-items-center"
@@ -57,15 +72,15 @@
                   align-items-center
                 "
               >
-                <ion-icon class="large-font" name="pizza"></ion-icon>
+                <ion-icon class="large-font-2-5-rem" [name]="budget.category.icon"></ion-icon>
               </div>
               <div class="flex flex-col gap">
-                <h2 class="white-color bold medium-font">Shoprite</h2>
-                <h2 class="white-color bold">Food</h2>
+                <h2 class="black-color bold medium-font">{{ budget.title }}</h2>
+                <h2 class="black-color bold">{{ budget.category.name }}</h2>
               </div>
             </div>
             <div class="flex flex-col justify-center align-items-center">
-              <h1 class="green-color bold medium-font">+R900</h1>
+              <h1 class="green-color bold medium-font">R{{ budget.amount }}</h1>
             </div>
           </ion-card-content>
         </ion-card>

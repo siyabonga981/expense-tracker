@@ -14,6 +14,10 @@ import { ExpensesPage } from '../pages/expenses/expenses';
 import { CategoriesPage } from '../pages/categories/categories';
 import { ExpenseBudgetModalPage } from '../pages/expense-budget-modal/expense-budget-modal';
 import { FormsModule } from '@angular/forms';
+import { ServicesApiProvider } from '../providers/services-api/services-api';
+import { HttpClientModule } from '@angular/common/http';
+import { LoaderPage } from '../pages/loader/loader';
+import { NgChartjsModule } from 'ng-chartjs';
 
 @NgModule({
   declarations: [
@@ -24,11 +28,14 @@ import { FormsModule } from '@angular/forms';
     AnalyticsPage,
     ExpensesPage,
     CategoriesPage,
-    ExpenseBudgetModalPage
+    ExpenseBudgetModalPage,
+    LoaderPage
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
+    NgChartjsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -40,12 +47,14 @@ import { FormsModule } from '@angular/forms';
     AnalyticsPage,
     ExpensesPage,
     CategoriesPage,
-    ExpenseBudgetModalPage
+    ExpenseBudgetModalPage,
+    LoaderPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ServicesApiProvider
   ]
 })
 export class AppModule {}

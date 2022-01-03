@@ -4,15 +4,10 @@ import {
   ModalController,
   NavController,
   NavParams,
+  ToastController,
 } from "ionic-angular";
+import { ServicesApiProvider } from "../../providers/services-api/services-api";
 import { ExpenseBudgetModalPage } from "../expense-budget-modal/expense-budget-modal";
-
-/**
- * Generated class for the ExpensesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -20,21 +15,75 @@ import { ExpenseBudgetModalPage } from "../expense-budget-modal/expense-budget-m
   templateUrl: "expenses.html",
 })
 export class ExpensesPage {
+  expensesTotal = 0;
+  showLoader: boolean = false;
+  expenses: any = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private api: ServicesApiProvider,
+    public toastController: ToastController
   ) {}
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad ExpensesPage");
+    this.getExpenses();
+    this.getExpensesTotal();
   }
 
-  addNewExpense() {
-    console.log('modal opened')
+  ionViewWillEnter(){
+  }
+
+  openExpenseDialog() {
+    this.navParams.data = { status: "new", title: "Add New Expense" };
     this.modalController
-      .create(ExpenseBudgetModalPage)
-      .present()
-      .then((res) => console.log(res));
+      .create(ExpenseBudgetModalPage, this.navParams.data)
+      .present();
+  }
+
+  openUpdateExpenseDialog(trans) {
+    this.navParams.data = { status: "edit", title: "Edit Expense", trans };
+    this.modalController
+      .create(ExpenseBudgetModalPage, this.navParams.data)
+      .present();
+  }
+
+  getExpenses() {
+    this.showLoader = true;
+    this.api
+      .getTransactions("transaction/getTransactions", { tag: "Expense" })
+      .subscribe((res: any) => {
+        this.expenses = res.transactions;
+        this.showLoader = false;
+      }, err => {
+        this.showLoader = false;
+        this.presentToast(err.msg || "Error Connecting To Server!", "failed");
+      });
+  }
+
+  getExpensesTotal() {
+    this.showLoader = true;
+    this.api
+      .getExpensesTotal("transaction/getExpensesTotal", { tag: "Expense" })
+      .subscribe((res: any) => {
+        this.expensesTotal = res.total;
+        this.showLoader = false;
+      }, err => {
+        this.showLoader = false;
+        this.presentToast(err.msg || "Error Connecting To Server!", "failed");
+      });
+  }
+
+  closeModal() {
+    this.navCtrl.pop();
+  }
+
+  async presentToast(msg, toastClass) {
+    await this.toastController
+      .create({
+        message: msg,
+        cssClass: toastClass,
+        duration: 2000,
+      }).present();
   }
 }
