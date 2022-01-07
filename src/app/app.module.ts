@@ -17,7 +17,6 @@ import { FormsModule } from '@angular/forms';
 import { ServicesApiProvider } from '../providers/services-api/services-api';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderPage } from '../pages/loader/loader';
-import { NgChartjsModule } from 'ng-chartjs';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,6 @@ import { NgChartjsModule } from 'ng-chartjs';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgChartjsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

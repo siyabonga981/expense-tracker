@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ServicesApiProvider {
-  serverUrl = 'http://localhost:4000'
+  // serverUrl = 'http://localhost:4000';
+  serverUrl = 'https://transaction-tracker-backend.herokuapp.com';
+
   constructor(public http: HttpClient) {
-    console.log('Hello ServicesApiProvider Provider');
   }
 
   getCategories(endpoint){

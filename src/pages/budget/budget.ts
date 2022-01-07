@@ -35,14 +35,14 @@ export class BudgetPage {
   }
 
   openBudgetDialog() {
-    this.navParams.data = { status: "new", title: "Add To Budget" };
+    this.navParams.data = { status: "new", title: "Add To Income" };
     this.modalController
       .create(ExpenseBudgetModalPage, this.navParams.data)
       .present();
   }
 
   openUpdateBudgetDialog(trans) {
-    this.navParams.data = { status: "edit", title: "Edit Budget Item", trans };
+    this.navParams.data = { status: "edit", title: "Edit Income Item", trans };
     this.modalController
       .create(ExpenseBudgetModalPage, this.navParams.data)
       .present();

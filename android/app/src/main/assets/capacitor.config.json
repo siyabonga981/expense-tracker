@@ -1,0 +1,6 @@
+{
+	"appId": "co.za.webgooru.app",
+	"appName": "expense-tracker",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

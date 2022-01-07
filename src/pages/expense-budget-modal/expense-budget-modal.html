@@ -18,12 +18,12 @@
       <form #currentTransaction="ngForm" class="flex flex-col gap-2-rem">
         <div class="flex flex-col">
           <ion-item>
-            <ion-input [(ngModel)]="transaction.title" type="text" name="title" placeholder="Title"></ion-input>
+            <ion-input required [(ngModel)]="transaction.title" type="text" name="title" placeholder="Title"></ion-input>
           </ion-item>
         </div>
         <div class="flex flex-col">
           <ion-item>
-            <ion-input [(ngModel)]="transaction.amount" name="amount" placeholder="Amount"></ion-input>
+            <ion-input type="number" required [(ngModel)]="transaction.amount" name="amount" placeholder="Amount"></ion-input>
           </ion-item>
         </div>
         <div class="flex flex-col" *ngIf="childData?.status === 'new'">
@@ -54,7 +54,7 @@
         </div>
         <div class="flex flex-col">
           <ion-item>
-            <ion-input disabled [(ngModel)]="transaction.date" name="date" placeholder="Date"></ion-input>
+            <ion-input required disabled [(ngModel)]="transaction.date" name="date" placeholder="Date"></ion-input>
           </ion-item>
         </div>
         <div class="flex flex-col">
@@ -63,13 +63,13 @@
           </ion-item>
         </div>
         <div class="flex flex-col">
-          <button *ngIf="childData?.title === 'Add New Expense' && childData?.status === 'new'" ion-button expand="full" [disabled]="!currentTransaction.valid" (click)="addNewExpense(currentTransaction)">Add Expense</button>
-          <button color="secondary" *ngIf="childData?.title ==='Edit Expense' && childData?.status === 'edit'" ion-button expand="full" [disabled]="!currentTransaction.valid" (click)="updateExpense(currentTransaction)">Update Expense</button>
-          <button color="danger" *ngIf="childData?.title ==='Edit Expense' && childData?.status === 'edit'" ion-button expand="full" [disabled]="!currentTransaction.valid" (click)="openDeleteAlert(childData?.trans._id)">Delete Expense</button>
+          <button *ngIf="childData?.title === 'Add New Expense' && childData?.status === 'new'" ion-button expand="full" (click)="addNewExpense(currentTransaction)">Add Expense</button>
+          <button color="secondary" *ngIf="childData?.title ==='Edit Expense' && childData?.status === 'edit'" ion-button expand="full" (click)="updateExpense(currentTransaction)">Update Expense</button>
+          <button color="danger" *ngIf="childData?.title ==='Edit Expense' && childData?.status === 'edit'" ion-button expand="full" (click)="openDeleteAlert(childData?.trans._id)">Delete Expense</button>
           <!-- Budget Buttons -->
-          <button *ngIf="childData?.title ==='Add To Budget' && childData?.status === 'new'" ion-button expand="full" [disabled]="!currentTransaction.valid" (click)="addNewBudget(currentTransaction)">Add To Budget</button>
-          <button color="secondary" *ngIf="childData?.title ==='Edit Budget Item' && childData?.status === 'edit'" ion-button expand="full" [disabled]="!currentTransaction.valid" (click)="updateBudget(currentTransaction)">Update Budget Item</button>
-          <button color="danger" *ngIf="childData?.title ==='Edit Budget Item' && childData?.status === 'edit'" ion-button expand="full" [disabled]="!currentTransaction.valid" (click)="openDeleteAlert(childData?.trans._id)">Delete Budget Item</button>
+          <button *ngIf="childData?.title ==='Add To Income' && childData?.status === 'new'" ion-button expand="full" (click)="addNewBudget(currentTransaction)">Add To Income</button>
+          <button color="secondary" *ngIf="childData?.title ==='Edit Income Item' && childData?.status === 'edit'" ion-button expand="full" (click)="updateBudget(currentTransaction)">Update Income Item</button>
+          <button color="danger" *ngIf="childData?.title ==='Edit Income Item' && childData?.status === 'edit'" ion-button expand="full" (click)="openDeleteAlert(childData?.trans._id)">Delete Income Item</button>
         </div>
       </form>
     </div>

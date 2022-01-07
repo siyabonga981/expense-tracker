@@ -77,7 +77,7 @@ export class ExpenseBudgetModalPage {
         (res: any) => {
           this.presentToast(res.msg, "");
           this.showLoader = false;
-          this.navCtrl.setRoot(ExpensesPage);
+          this.navCtrl.push(ExpensesPage);
         },
         (err) => {
           this.presentToast(err.msg || "Error Connecting To Server!", "");
@@ -104,7 +104,7 @@ export class ExpenseBudgetModalPage {
           (res: any) => {
             this.presentToast(res.msg, "");
             this.showLoader = false;
-            this.navCtrl.setRoot(ExpensesPage);
+            this.navCtrl.push(ExpensesPage);
           },
           (err) => {
             this.showLoader = false;
@@ -119,7 +119,7 @@ export class ExpenseBudgetModalPage {
     this.api.deleteTransaction("transaction/deleteExpense/" + id).subscribe(
       (res: any) => {
         this.presentToast(res.msg, "");
-        this.navCtrl.setRoot(this.childData.title === 'Edit Budget Item' ? BudgetPage : ExpensesPage);
+        this.navCtrl.push(this.childData.title === 'Edit Income Item' ? BudgetPage : ExpensesPage);
       },
       (err) => {
         this.showLoader = false;
@@ -140,7 +140,7 @@ export class ExpenseBudgetModalPage {
         (res: any) => {
           this.presentToast(res.msg, "");
           this.showLoader = false;
-          this.navCtrl.setRoot(BudgetPage);
+          this.navCtrl.push(BudgetPage);
         },
         (err) => {
           this.presentToast(err.msg || "Error Connecting To Server!", "");
@@ -167,7 +167,7 @@ export class ExpenseBudgetModalPage {
           (res: any) => {
             this.presentToast(res.msg, "");
             this.showLoader = false;
-            this.navCtrl.setRoot(BudgetPage);
+            this.navCtrl.push(BudgetPage);
           },
           (err) => {
             this.showLoader = false;
