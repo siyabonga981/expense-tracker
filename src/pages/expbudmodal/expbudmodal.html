@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+    <div class="flex justify-between">
+      <ion-title> {{ childData?.title }} </ion-title>
+      <button color="danger" (click)="closeModal()" ion-button>Close</button>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="black-background" padding>
+  <div *ngIf="showLoader" class="loader-overlay full-width absolute flex justify-center align-items-center">
+    <ion-card class="loader absolute flex justify-center align-items-center">
+      <img src="../../assets/imgs/spinner.gif" alt="">
+    </ion-card>
+  </div>
+  <ion-grid>
+    <div class="flex flex-col gap">
+      <form #currentTransaction="ngForm" class="flex flex-col gap-2-rem">
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-input required [(ngModel)]="transaction.title" type="text" name="title" placeholder="Title"></ion-input>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-input type="number" required [(ngModel)]="transaction.amount" name="amount" placeholder="Amount"></ion-input>
+          </ion-item>
+        </div>
+        <div class="flex flex-col" *ngIf="childData?.status === 'new'">
+          <ion-item>
+            <ion-label><b class="primary-color">Transaction Category</b> </ion-label>
+            <ion-select [(ngModel)]="transaction.category" name="category" placeholder="Select One"  okText="Confirm" cancelText="Cancel">
+              <ion-option *ngFor="let cat  of categories " [value]="cat">{{ cat.name }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="flex flex-col" *ngIf="childData?.status === 'edit'">
+          <ion-item>
+            <ion-label><b class="primary-color">Transaction Category</b> </ion-label>
+            <ion-select [(ngModel)]="transaction.category" name="category" placeholder="Select One"  okText="Confirm" cancelText="Cancel">
+              <ion-option  [value]="transaction.category">{{ transaction.category.name}}</ion-option>
+              <ion-option *ngFor="let cat of updatedCategories" [value]="cat">{{ cat.name }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-label><b class="primary-color">Transaction Type</b> </ion-label>
+            <ion-select [(ngModel)]="transaction.type" name="type" placeholder="Select One"  okText="Confirm" cancelText="Cancel">
+              <ion-option value="Cash">Cash</ion-option>
+              <ion-option value="Card">Card</ion-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-input required disabled [(ngModel)]="transaction.date" name="date" placeholder="Date"></ion-input>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <ion-item>
+            <ion-textarea [(ngModel)]="transaction.notes" rows="5" name="notes" placeholder="Notes"></ion-textarea>
+          </ion-item>
+        </div>
+        <div class="flex flex-col">
+          <button *ngIf="childData?.title === 'Add New Expense' && childData?.status === 'new'" ion-button expand="full" (click)="addNewExpense(currentTransaction)">Add Expense</button>
+          <button color="secondary" *ngIf="childData?.title ==='Edit Expense' && childData?.status === 'edit'" ion-button expand="full" (click)="updateExpense(currentTransaction)">Update Expense</button>
+          <button color="danger" *ngIf="childData?.title ==='Edit Expense' && childData?.status === 'edit'" ion-button expand="full" (click)="openDeleteAlert(childData?.trans._id)">Delete Expense</button>
+          <!-- Budget Buttons -->
+          <button *ngIf="childData?.title ==='Add To Income' && childData?.status === 'new'" ion-button expand="full" (click)="addNewBudget(currentTransaction)">Add To Income</button>
+          <button color="secondary" *ngIf="childData?.title ==='Edit Income Item' && childData?.status === 'edit'" ion-button expand="full" (click)="updateBudget(currentTransaction)">Update Income Item</button>
+          <button color="danger" *ngIf="childData?.title ==='Edit Income Item' && childData?.status === 'edit'" ion-button expand="full" (click)="openDeleteAlert(childData?.trans._id)">Delete Income Item</button>
+        </div>
+      </form>
+    </div>
+  </ion-grid>
+</ion-content>

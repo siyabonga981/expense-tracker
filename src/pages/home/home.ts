@@ -123,7 +123,8 @@ export class HomePage {
   }
 
   redirectToPage(page){
-    this.navCtrl.setRoot(page === 'BudgetPage' ? BudgetPage : ExpensesPage)
+    this.navCtrl.push(page === 'BudgetPage' ? BudgetPage : ExpensesPage);
+    console.log(this.navCtrl);
   }
   getCurrentMonth() {
     return this.months[new Date().getMonth()];

@@ -8,6 +8,7 @@ import {
 } from "ionic-angular";
 import { ServicesApiProvider } from "../../providers/services-api/services-api";
 import { ExpenseBudgetModalPage } from "../expense-budget-modal/expense-budget-modal";
+
 @IonicPage()
 @Component({
   selector: 'page-budget',
@@ -38,14 +39,24 @@ export class BudgetPage {
     this.navParams.data = { status: "new", title: "Add To Income" };
     this.modalController
       .create(ExpenseBudgetModalPage, this.navParams.data)
-      .present();
+      .present().then(() => {
+    console.log('From budget open',this.navCtrl.getActive());
+
+      // let index = this.navCtrl.indexOf(this.navCtrl.getActive());
+      // this.navCtrl.remove(index);
+    });;
   }
 
   openUpdateBudgetDialog(trans) {
+    console.log('From budget update',this.navCtrl.getActive());
+
     this.navParams.data = { status: "edit", title: "Edit Income Item", trans };
     this.modalController
       .create(ExpenseBudgetModalPage, this.navParams.data)
-      .present();
+      .present().then(() => {
+      // let index = this.navCtrl.indexOf(this.navCtrl.getActive());
+      // this.navCtrl.remove(index);
+    });;
   }
 
   getBudget() {
@@ -72,10 +83,6 @@ export class BudgetPage {
         this.showLoader = false;
         this.presentToast(err.msg || "Error Connecting To Server!", "failed");
       });
-  }
-
-  closeModal() {
-    this.navCtrl.pop();
   }
 
   async presentToast(msg, toastClass) {

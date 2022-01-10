@@ -12,12 +12,13 @@ import { Transaction } from "../../interface/transaction";
 import { ServicesApiProvider } from "../../providers/services-api/services-api";
 import { BudgetPage } from "../budget/budget";
 import { ExpensesPage } from "../expenses/expenses";
+
 @IonicPage()
 @Component({
-  selector: "page-expense-budget-modal",
-  templateUrl: "expense-budget-modal.html",
+  selector: 'page-expbudmodal',
+  templateUrl: 'expbudmodal.html',
 })
-export class ExpenseBudgetModalPage {
+export class ExpbudmodalPage {
   showLoader: boolean = false;
   expensesTotal = 0;
   transaction: Transaction = {

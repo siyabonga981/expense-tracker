@@ -18,6 +18,7 @@ import { ServicesApiProvider } from '../providers/services-api/services-api';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderPage } from '../pages/loader/loader';
 
+
 @NgModule({
   declarations: [
     MyApp,
